@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { supabase } from "@/integrations/supabase/client";
+import { Slack } from "lucide-react";
 
 const Index = () => {
   const [email, setEmail] = useState("");
@@ -68,89 +69,120 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-white">
-      <div className="max-w-6xl mx-auto px-4 py-16 sm:px-6 lg:px-8">
-        {/* Hero Section */}
-        <div className="text-center mb-16">
-          <h1 className="text-5xl font-bold tracking-tight text-gray-900 sm:text-6xl md:text-7xl">
-            The Complete Path to
-            <span className="block bg-gradient-to-r from-purple-600 to-purple-800 bg-clip-text text-transparent">
-              Product Mastery
-            </span>
-          </h1>
-          <p className="mt-6 max-w-2xl mx-auto text-lg text-gray-600 sm:text-xl">
-            Master product management through hands-on experience. Learn from industry experts and build your portfolio with real-world projects.
-          </p>
+    <div className="min-h-screen bg-white relative">
+      {/* Checkered Background Pattern */}
+      <div 
+        className="absolute inset-0 w-full h-full pointer-events-none"
+        style={{
+          backgroundImage: `
+            linear-gradient(to right, #F1F0FB 1px, transparent 1px),
+            linear-gradient(to bottom, #F1F0FB 1px, transparent 1px)
+          `,
+          backgroundSize: '40px 40px',
+          opacity: '0.4'
+        }}
+      />
+
+      <div className="relative">
+        {/* Logo */}
+        <div className="absolute top-8 left-8">
+          <img src="/pmhelp.png" alt="PMHelp Logo" className="h-12 w-auto" />
         </div>
 
-        {/* Features Grid */}
-        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 mb-16">
-          {[
-            {
-              title: "Real-World Projects",
-              description: "Work on actual product cases from leading tech companies",
-            },
-            {
-              title: "Expert Mentorship",
-              description: "Get guidance from experienced product managers",
-            },
-            {
-              title: "Portfolio Building",
-              description: "Create a compelling PM portfolio that stands out",
-            },
-          ].map((feature, index) => (
-            <div
-              key={index}
-              className="relative p-8 bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow"
-            >
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">
-                {feature.title}
-              </h3>
-              <p className="text-gray-600">{feature.description}</p>
-            </div>
-          ))}
-        </div>
-
-        {/* Waitlist Form */}
-        <div className="max-w-xl mx-auto">
-          <div className="text-center mb-8">
-            <h2 className="text-3xl font-bold text-gray-900">
-              Join the Waitlist
-            </h2>
-            <p className="mt-3 text-gray-600">
-              Be the first to know when we launch and get early access.
+        <div className="max-w-6xl mx-auto px-4 py-16 sm:px-6 lg:px-8">
+          {/* Hero Section */}
+          <div className="text-center mb-16">
+            <h1 className="text-5xl font-bold tracking-tight text-gray-900 sm:text-6xl md:text-7xl">
+              The Complete Path to
+              <span className="block bg-gradient-to-r from-purple-600 to-purple-800 bg-clip-text text-transparent">
+                Product Mastery
+              </span>
+            </h1>
+            <p className="mt-6 max-w-2xl mx-auto text-lg text-gray-600 sm:text-xl">
+              Master product management through hands-on experience. Learn from industry experts and build your portfolio with real-world projects.
             </p>
           </div>
 
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <div>
-              <Input
-                type="email"
-                placeholder="Enter your email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-                className="w-full h-12 rounded-xl border-gray-200 focus:border-purple-500 focus:ring-purple-500"
-              />
+          {/* Features Grid */}
+          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 mb-16">
+            {[
+              {
+                title: "Real-World Projects",
+                description: "Work on actual product cases from leading tech companies",
+              },
+              {
+                title: "Expert Mentorship",
+                description: "Get guidance from experienced product managers",
+              },
+              {
+                title: "Portfolio Building",
+                description: "Create a compelling PM portfolio that stands out",
+              },
+            ].map((feature, index) => (
+              <div
+                key={index}
+                className="relative p-8 bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow"
+              >
+                <h3 className="text-xl font-semibold text-gray-900 mb-3">
+                  {feature.title}
+                </h3>
+                <p className="text-gray-600">{feature.description}</p>
+              </div>
+            ))}
+          </div>
+
+          {/* Waitlist Form */}
+          <div className="max-w-xl mx-auto">
+            <div className="text-center mb-8">
+              <h2 className="text-3xl font-bold text-gray-900">
+                Join the Waitlist
+              </h2>
+              <p className="mt-3 text-gray-600">
+                Be the first to know when we launch and get early access.
+              </p>
             </div>
-            <Button
-              type="submit"
-              className="w-full h-12 rounded-xl bg-gradient-to-r from-purple-600 to-purple-800 hover:from-purple-700 hover:to-purple-900 text-white font-medium"
-              disabled={isLoading}
-            >
-              {isLoading ? "Joining..." : "Start Your Journey →"}
-            </Button>
-          </form>
 
-          <p className="mt-4 text-center text-lg text-purple-600 font-semibold">
-            {waitlistCount} {waitlistCount === 1 ? 'person has' : 'people have'} joined the waitlist
-          </p>
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <div>
+                <Input
+                  type="email"
+                  placeholder="Enter your email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                  className="w-full h-12 rounded-xl border-gray-200 focus:border-purple-500 focus:ring-purple-500"
+                />
+              </div>
+              <Button
+                type="submit"
+                className="w-full h-12 rounded-xl bg-gradient-to-r from-purple-600 to-purple-800 hover:from-purple-700 hover:to-purple-900 text-white font-medium"
+                disabled={isLoading}
+              >
+                {isLoading ? "Joining..." : "Start Your Journey →"}
+              </Button>
+            </form>
 
-          <Alert className="mt-8 rounded-xl border-purple-100 bg-purple-50">
-            <AlertDescription className="text-purple-800">
-              By joining the waitlist, you'll get exclusive updates and early access opportunities.
-            </AlertDescription>
-          </Alert>
+            <p className="mt-4 text-center text-lg text-purple-600 font-semibold">
+              {waitlistCount} {waitlistCount === 1 ? 'person has' : 'people have'} joined the waitlist
+            </p>
+
+            <Alert className="mt-8 rounded-xl border-purple-100 bg-purple-50">
+              <AlertDescription className="text-purple-800">
+                By joining the waitlist, you'll get exclusive updates and early access opportunities.
+              </AlertDescription>
+            </Alert>
+          </div>
+
+          {/* Slack Community CTA */}
+          <div className="mt-20 text-center">
+            <div className="inline-flex items-center justify-center space-x-3 bg-[#4A154B] text-white px-6 py-3 rounded-xl hover:bg-[#3e1140] transition-colors cursor-pointer">
+              <Slack className="w-6 h-6" />
+              <span className="font-medium">Join our Slack Community</span>
+            </div>
+            <p className="mt-3 text-gray-600">
+              Connect with fellow product managers and get exclusive insights
+            </p>
+          </div>
         </div>
       </div>
     </div>
