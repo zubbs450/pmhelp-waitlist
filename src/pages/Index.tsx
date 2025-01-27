@@ -3,7 +3,7 @@ import { useToast } from "@/hooks/use-toast";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Alert, AlertDescription } from "@/components/ui/alert";
-import { supabase } from "@/lib/supabase";
+import { supabase } from "@/integrations/supabase/client";
 
 const Index = () => {
   const [email, setEmail] = useState("");
@@ -30,7 +30,6 @@ const Index = () => {
     } catch (error: any) {
       console.error("Error:", error);
       
-      // Handle duplicate email error specifically
       if (error.code === '23505') {
         toast({
           variant: "destructive",
