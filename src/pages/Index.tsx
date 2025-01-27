@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -8,7 +8,25 @@ import { supabase } from "@/integrations/supabase/client";
 const Index = () => {
   const [email, setEmail] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [waitlistCount, setWaitlistCount] = useState<number>(0);
   const { toast } = useToast();
+
+  useEffect(() => {
+    fetchWaitlistCount();
+  }, []);
+
+  const fetchWaitlistCount = async () => {
+    try {
+      const { count, error } = await supabase
+        .from("waitlist")
+        .select("*", { count: 'exact', head: true });
+
+      if (error) throw error;
+      setWaitlistCount(count || 0);
+    } catch (error) {
+      console.error("Error fetching waitlist count:", error);
+    }
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -27,6 +45,8 @@ const Index = () => {
       });
 
       setEmail("");
+      // Refresh the count after successful submission
+      fetchWaitlistCount();
     } catch (error: any) {
       console.error("Error:", error);
       
@@ -59,6 +79,10 @@ const Index = () => {
           </h1>
           <p className="mt-3 max-w-md mx-auto text-base text-gray-500 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl">
             Master product management through hands-on experience. Learn from industry experts and build your portfolio with real-world projects.
+          </p>
+          {/* Add waitlist count display */}
+          <p className="mt-4 text-lg text-blue-600 font-semibold">
+            {waitlistCount} {waitlistCount === 1 ? 'person has' : 'people have'} joined the waitlist
           </p>
         </div>
 
