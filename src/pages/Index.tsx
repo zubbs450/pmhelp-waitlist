@@ -91,10 +91,10 @@ const Index = () => {
 
         <div className="max-w-6xl mx-auto px-4 py-16 sm:px-6 lg:px-8">
           {/* Hero Section */}
-          <div className="text-center mb-16">
-            <h1 className="text-5xl font-bold tracking-tight text-gray-900 sm:text-6xl md:text-7xl">
+          <div className="text-center mb-16 pt-12"> {/* Added pt-12 for top padding */}
+            <h1 className="text-5xl font-bold tracking-tight text-gray-900 sm:text-6xl md:text-7xl pb-4"> {/* Added pb-4 for bottom padding */}
               The Complete Path to
-              <span className="block bg-gradient-to-r from-purple-600 to-purple-800 bg-clip-text text-transparent">
+              <span className="block bg-gradient-to-r from-purple-600 to-purple-800 bg-clip-text text-transparent py-2"> {/* Added py-2 for vertical padding */}
                 Product Mastery
               </span>
             </h1>
