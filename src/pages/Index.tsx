@@ -80,10 +80,6 @@ const Index = () => {
           <p className="mt-3 max-w-md mx-auto text-base text-gray-500 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl">
             Master product management through hands-on experience. Learn from industry experts and build your portfolio with real-world projects.
           </p>
-          {/* Add waitlist count display */}
-          <p className="mt-4 text-lg text-blue-600 font-semibold">
-            {waitlistCount} {waitlistCount === 1 ? 'person has' : 'people have'} joined the waitlist
-          </p>
         </div>
 
         {/* Features Grid */}
@@ -144,6 +140,11 @@ const Index = () => {
               {isLoading ? "Joining..." : "Join Waitlist"}
             </Button>
           </form>
+
+          {/* Waitlist count display - moved here */}
+          <p className="mt-4 text-center text-lg text-blue-600 font-semibold">
+            {waitlistCount} {waitlistCount === 1 ? 'person has' : 'people have'} joined the waitlist
+          </p>
 
           <Alert className="mt-8">
             <AlertDescription>
