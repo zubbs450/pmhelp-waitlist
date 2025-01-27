@@ -10,7 +10,7 @@ const Hero = () => {
         </span>
       </h1>
       <p className="mt-6 max-w-2xl mx-auto text-base sm:text-lg md:text-xl text-gray-600">
-        Master product management through hands-on experience. Learn from industry experts and build your portfolio with real-world projects.
+        Transform your product career with real-world simulations. Work on actual challenges from leading tech companies, graduate with a portfolio that proves your PM skills, and walk into interviews with battle-tested confidence
       </p>
     </div>
   );
