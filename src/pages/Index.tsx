@@ -45,7 +45,6 @@ const Index = () => {
       });
 
       setEmail("");
-      // Refresh the count after successful submission
       fetchWaitlistCount();
     } catch (error: any) {
       console.error("Error:", error);
@@ -69,15 +68,17 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white">
+    <div className="min-h-screen bg-white">
       <div className="max-w-6xl mx-auto px-4 py-16 sm:px-6 lg:px-8">
         {/* Hero Section */}
         <div className="text-center mb-16">
-          <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl md:text-6xl">
-            Product Management
-            <span className="block text-blue-600">Virtual Experience</span>
+          <h1 className="text-5xl font-bold tracking-tight text-gray-900 sm:text-6xl md:text-7xl">
+            The Complete Path to
+            <span className="block bg-gradient-to-r from-purple-600 to-purple-800 bg-clip-text text-transparent">
+              Product Mastery
+            </span>
           </h1>
-          <p className="mt-3 max-w-md mx-auto text-base text-gray-500 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl">
+          <p className="mt-6 max-w-2xl mx-auto text-lg text-gray-600 sm:text-xl">
             Master product management through hands-on experience. Learn from industry experts and build your portfolio with real-world projects.
           </p>
         </div>
@@ -100,12 +101,12 @@ const Index = () => {
           ].map((feature, index) => (
             <div
               key={index}
-              className="relative p-6 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow"
+              className="relative p-8 bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow"
             >
-              <h3 className="text-lg font-medium text-gray-900 mb-2">
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">
                 {feature.title}
               </h3>
-              <p className="text-gray-500">{feature.description}</p>
+              <p className="text-gray-600">{feature.description}</p>
             </div>
           ))}
         </div>
@@ -116,7 +117,7 @@ const Index = () => {
             <h2 className="text-3xl font-bold text-gray-900">
               Join the Waitlist
             </h2>
-            <p className="mt-2 text-gray-600">
+            <p className="mt-3 text-gray-600">
               Be the first to know when we launch and get early access.
             </p>
           </div>
@@ -129,25 +130,24 @@ const Index = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
-                className="w-full"
+                className="w-full h-12 rounded-xl border-gray-200 focus:border-purple-500 focus:ring-purple-500"
               />
             </div>
             <Button
               type="submit"
-              className="w-full bg-blue-600 hover:bg-blue-700"
+              className="w-full h-12 rounded-xl bg-gradient-to-r from-purple-600 to-purple-800 hover:from-purple-700 hover:to-purple-900 text-white font-medium"
               disabled={isLoading}
             >
-              {isLoading ? "Joining..." : "Join Waitlist"}
+              {isLoading ? "Joining..." : "Start Your Journey →"}
             </Button>
           </form>
 
-          {/* Waitlist count display - moved here */}
-          <p className="mt-4 text-center text-lg text-blue-600 font-semibold">
+          <p className="mt-4 text-center text-lg text-purple-600 font-semibold">
             {waitlistCount} {waitlistCount === 1 ? 'person has' : 'people have'} joined the waitlist
           </p>
 
-          <Alert className="mt-8">
-            <AlertDescription>
+          <Alert className="mt-8 rounded-xl border-purple-100 bg-purple-50">
+            <AlertDescription className="text-purple-800">
               By joining the waitlist, you'll get exclusive updates and early access opportunities.
             </AlertDescription>
           </Alert>
