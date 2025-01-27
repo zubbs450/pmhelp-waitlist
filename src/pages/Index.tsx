@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useToast } from "@/components/ui/use-toast";
+import { useToast } from "@/hooks/use-toast";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Alert, AlertDescription } from "@/components/ui/alert";
@@ -15,33 +15,35 @@ const Index = () => {
     setIsLoading(true);
 
     try {
-      // Insert into waitlist table
       const { error } = await supabase
         .from("waitlist")
-        .insert([{ email, status: "pending" }]);
+        .insert([{ email }]);
 
       if (error) throw error;
 
-      // Send welcome email using Supabase Edge Function
-      const { error: emailError } = await supabase.functions.invoke("send-welcome-email", {
-        body: { email },
-      });
-
-      if (emailError) throw emailError;
-
       toast({
         title: "Successfully joined waitlist!",
-        description: "Check your email for confirmation.",
+        description: "We'll notify you when we launch.",
       });
 
       setEmail("");
-    } catch (error) {
+    } catch (error: any) {
       console.error("Error:", error);
-      toast({
-        variant: "destructive",
-        title: "Error joining waitlist",
-        description: "Please try again later.",
-      });
+      
+      // Handle duplicate email error specifically
+      if (error.code === '23505') {
+        toast({
+          variant: "destructive",
+          title: "Already on the waitlist",
+          description: "This email has already been registered.",
+        });
+      } else {
+        toast({
+          variant: "destructive",
+          title: "Error joining waitlist",
+          description: "Please try again later.",
+        });
+      }
     } finally {
       setIsLoading(false);
     }
