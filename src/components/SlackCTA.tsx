@@ -15,9 +15,6 @@ const SlackCTA = () => {
         <Slack className="w-5 h-5 sm:w-6 sm:h-6" />
         <span className="font-medium">Join our Slack Community</span>
       </a>
-      <p className="mt-3 text-sm sm:text-base text-gray-600">
-        Connect with fellow product managers and get exclusive insights
-      </p>
     </div>
   );
 };
