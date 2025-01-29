@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Alert, AlertDescription } from "@/components/ui/alert";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 
@@ -79,12 +78,6 @@ const WaitlistForm = ({ onSuccess }: { onSuccess: () => void }) => {
           {isLoading ? "Joining..." : "Start Your Journey →"}
         </Button>
       </form>
-
-      <Alert className="mt-8 rounded-xl border-purple-100 bg-purple-50">
-        <AlertDescription className="text-sm sm:text-base text-purple-800">
-          By joining the waitlist, you'll get exclusive updates and early access opportunities.
-        </AlertDescription>
-      </Alert>
     </div>
   );
 };
