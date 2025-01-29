@@ -5,6 +5,7 @@ import Hero from "@/components/Hero";
 import Features from "@/components/Features";
 import WaitlistForm from "@/components/WaitlistForm";
 import SlackCTA from "@/components/SlackCTA";
+import Footer from "@/components/Footer";
 
 const Index = () => {
   const [waitlistCount, setWaitlistCount] = useState<number>(0);
@@ -55,6 +56,8 @@ const Index = () => {
           
           <SlackCTA />
         </div>
+
+        <Footer />
       </div>
     </div>
   );
