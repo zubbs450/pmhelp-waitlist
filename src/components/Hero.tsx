@@ -3,7 +3,7 @@ import React from "react";
 const Hero = () => {
   return (
     <div className="text-center mb-16 pt-12">
-      <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-gray-900 pb-4">
+      <h1 className="font-heading text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-gray-900 pb-4">
         The Complete Path to
         <span className="block bg-gradient-to-r from-purple-600 to-purple-800 bg-clip-text text-transparent py-2">
           Product Mastery

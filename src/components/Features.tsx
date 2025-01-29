@@ -33,7 +33,7 @@ const Features = () => {
               <div className="p-3 rounded-lg bg-purple-50 shrink-0">
                 <Icon className="w-6 h-6 text-purple-600" strokeWidth={1.5} />
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 leading-tight">
+              <h3 className="font-heading text-xl font-semibold text-gray-900 leading-tight">
                 {feature.title}
               </h3>
             </div>
