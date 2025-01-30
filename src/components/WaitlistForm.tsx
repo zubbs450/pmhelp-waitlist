@@ -21,6 +21,7 @@ const WaitlistForm = ({ onSuccess }: { onSuccess: () => void }) => {
       if (error) throw error;
 
       toast({
+        variant: "success",
         title: "Successfully joined waitlist!",
         description: "We'll notify you when we launch.",
       });
